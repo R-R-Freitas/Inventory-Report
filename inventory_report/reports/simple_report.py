@@ -22,14 +22,18 @@ class SimpleReport:
         )
 
     @classmethod
-    def get_company_most_products(cls, products):
+    def count_product_per_company(cls, products):
         companies = dict()
         for product in products:
             if product["nome_da_empresa"] in companies.keys():
                 companies[product["nome_da_empresa"]] += 1
             else:
                 companies[product["nome_da_empresa"]] = 1
-        print(companies)
+        return companies
+
+    @classmethod
+    def get_company_most_products(cls, products):
+        companies = cls.count_product_per_company(products)
         # source: https://stackoverflow.com/questions/268272/
         # getting-key-with-maximum-value-in-dictionary
         return max(companies, key=companies.get)
