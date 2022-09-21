@@ -13,15 +13,15 @@ class Inventory:
                 file_reader = csv.reader(file, delimiter=",", quotechar='"')
                 header, *data = file_reader
                 results = cls.csv_to_dict(header, data)
-                return(cls.call_generate_report(results, report_type))
+                return cls.call_generate_report(results, report_type)
             elif path.endswith(".json"):
                 with open(path) as file:
                     results = json.load(file)
-                return(cls.call_generate_report(results, report_type))
+                return cls.call_generate_report(results, report_type)
             elif path.endswith(".xml"):
-                with open(path, mode='r', encoding='utf-8') as file:
+                with open(path, mode="r", encoding="utf-8") as file:
                     results = xmltodict.parse(file.read())["dataset"]["record"]
-                return(cls.call_generate_report(results, report_type))
+                return cls.call_generate_report(results, report_type)
 
     @classmethod
     def call_generate_report(cls, results, report_type):
