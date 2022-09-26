@@ -28,12 +28,11 @@ def main():
         report_type = report_types.get(type)
         inventory = InventoryRefactor(importer)
         inventory.import_data(path, type)
-        inventory_iterator = iter(inventory)
         if report_type == ColoredReport:
             report = ColoredReport(SimpleReport)
-            colored_report = report.generate(list(inventory_iterator))
+            colored_report = report.generate(inventory)
             sys.stdout.write(colored_report)
         else:
-            sys.stdout.write(report_type.generate(list(inventory_iterator)))
+            sys.stdout.write(report_type.generate(inventory))
     except IndexError:
         sys.stderr.write("Verifique os argumentos\n")
