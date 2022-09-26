@@ -32,8 +32,8 @@ def main():
         if report_type == ColoredReport:
             report = ColoredReport(SimpleReport)
             colored_report = report.generate(list(inventory_iterator))
-            print(colored_report)
+            sys.stdout.write(colored_report)
         else:
-            print(report_type.generate(list(inventory_iterator)))
+            sys.stdout.write(report_type.generate(list(inventory_iterator)))
     except IndexError:
         sys.stderr.write("Verifique os argumentos\n")
